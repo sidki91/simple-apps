@@ -1,10 +1,6 @@
 pipeline {
     agent { label 'host1-sidki' }
-    environment {
-        TOKEN_SONAR = credentials('token-sonar')
-        HOST_SONAR  = credentials('host-sonar')
-    }
-
+   
     stages {
         stage('Pull SCM') {
             steps {
@@ -38,8 +34,8 @@ pipeline {
                 sonar-scanner \
                 -Dsonar.projectKey=simple-apps \
                 -Dsonar.sources=. \
-                -Dsonar.host.url={HOST_SONAR}\
-                -Dsonar.token={TOKEN_SONAR}
+                -Dsonar.host.url=http://172.23.4.111:9000 \
+                -Dsonar.token=sqp_c8f7d54febb1a424339d58b37c50b81163251203
                 '''
             }
         }
